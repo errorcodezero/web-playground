@@ -1,0 +1,6 @@
+services:
+ website:
+  restart: always
+  build:
+     context: ./
+     dockerfile: Dockerfile
