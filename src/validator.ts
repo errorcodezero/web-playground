@@ -8,11 +8,6 @@ const setSchema = z.object({
   input: z.nativeEnum(Tile),
 });
 
-const getSchema = z.object({
-  x: z.number().int().nonnegative().lt(Playground.length),
-  y: z.number().int().nonnegative().lt(Playground.length),
-});
-
 const searchSchema = z.object({
   x: z.number().int().nonnegative().lt(Playground.length),
   y: z.number().int().nonnegative().lt(Playground.length),
@@ -24,4 +19,4 @@ const setSecretSchema = z.object({
   input: z.string().emoji(),
 });
 
-export { getSchema, setSchema, searchSchema, setSecretSchema }
+export { setSchema, searchSchema, setSecretSchema }

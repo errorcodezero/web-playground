@@ -36,10 +36,6 @@ class Playground {
     Playground.outSideChanges += 1;
   }
 
-  public get(x: number, y: number) {
-    return this.grid[this.grid.length - y - 1][x];
-  }
-
   public getSecret(x: number, y: number) {
     return this.secrets[this.grid.length - y - 1][x];
   }

@@ -2,7 +2,6 @@ import { Hono } from "hono";
 import { logger } from "hono/logger";
 import Playground from "./playground.ts";
 import { validator } from "hono/validator";
-import { getSchema } from "./validator.ts";
 import { setSchema } from "./validator.ts";
 import { setSecretSchema } from "./validator.ts";
 import { searchSchema } from "./validator.ts";
