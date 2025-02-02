@@ -17,24 +17,6 @@ app.get("/", (c) => {
 });
 
 app.post(
-  "/get",
-  validator("json", (value, c) => {
-    const parsed = getSchema.safeParse(value);
-    if (!parsed.success) {
-      return c.json(parsed.error);
-    }
-
-    return parsed.data;
-  }),
-  (c) => {
-    const data = c.req.valid("json");
-    const rsp = playground.get(data.x, data.y);
-
-    return c.json(rsp);
-  },
-);
-
-app.post(
   "/set",
   validator("json", (value, c) => {
     const parsed = setSchema.safeParse(value);
@@ -47,9 +29,8 @@ app.post(
   (c) => {
     const data = c.req.valid("json");
     playground.set(data.x, data.y, data.input);
-    const rsp = data.input;
 
-    return c.json(rsp);
+    return c.text("");
   },
 );
 
@@ -67,9 +48,8 @@ app.post(
   (c) => {
     const data = c.req.valid("json");
     playground.setSecret(data.x, data.y, data.input);
-    const rsp = data.input;
 
-    return c.json(rsp);
+    return c.text("");
   },
 );
 
@@ -87,20 +67,27 @@ app.post(
     const data = c.req.valid("json");
     const rsp = playground.getSecret(data.x, data.y);
 
-    return c.json(rsp);
+	if (rsp != "")
+		return c.json({
+		  secret: rsp,
+		  message: "Secret Found!"
+		});
+	return c.json({
+	  message: "No secret here!"
+	});
   },
 );
 
 app.get("/changes", (c) => {
-  return c.json(playground.getChanges());
+  return c.text(String(playground.getChanges()));
 });
 
 app.get("/changes/outside", (c) => {
-  return c.json(playground.getOutsideChanges());
+  return c.text(String(playground.getOutsideChanges()));
 });
 
 app.get("/changes/inside", (c) => {
-  return c.json(playground.getInsideChanges());
+  return c.json(String(playground.getInsideChanges()));
 });
 
 Deno.serve(app.fetch);
