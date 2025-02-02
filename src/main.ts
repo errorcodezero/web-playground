@@ -66,13 +66,8 @@ app.post(
     const data = c.req.valid("json");
     const rsp = playground.getSecret(data.x, data.y);
 
-	if (rsp != "")
-		return c.json({
-		  secret: rsp,
-		  message: "Secret Found!"
-		});
 	return c.json({
-	  message: "No secret here!"
+	  secret: rsp,
 	});
   },
 );

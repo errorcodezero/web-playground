@@ -74,7 +74,6 @@ If there is a secret at the location, you will get a response similar to such:
 ```json
 {
     "secret": "😎",
-    "message": "Secret Found!"
 }
 ```
 
@@ -82,7 +81,7 @@ Else, you will get a response as such:
 
 ```json
 {
-    "message": "No secret here!"
+    "secret": ""
 }
 ```
 
